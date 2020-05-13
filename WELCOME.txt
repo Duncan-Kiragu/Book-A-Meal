@@ -96,7 +96,7 @@ class Subscribe
 
 	Table
 
-		-subscribers
+	 	-subscribers
 
 	Attributes
 
