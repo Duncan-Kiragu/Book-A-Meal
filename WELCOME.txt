@@ -1,1 +1,107 @@
+class User
 
+	Table name
+
+		-Users
+
+	Attribute
+
+		-id(Primary_key)
+
+		-username
+
+		-email(unique)
+
+		-password_hash
+
+		-Role_id(Foreign_key)
+
+		-orders(db-relationship)
+
+class Admin
+
+	Table
+
+		-admins
+
+	Attributes
+
+		-id(Primary_key)
+
+		-username
+
+		-email(unique)
+
+		-password_hash
+
+		-Role_id(Foreign_key)
+
+		-orders
+
+		-profile(details and a picture)
+
+class Role
+
+	Table
+
+		-roles
+
+	Attributes
+
+		-id(Primary_key)
+
+		-name
+
+		-users
+
+		-admins
+
+class Order
+
+	Table
+
+		-orders
+
+	Attributes
+
+		-id(Primary_key)
+
+		-order_name(the name of the meal)
+
+		-posted(the time the order was made)
+
+		-user_id(Foreign_key)
+
+		-admin_id(Foreign_key)
+
+		-meal(db_relationship)
+
+class Meal
+
+	Table
+
+		-meals
+
+	Attributes
+
+		-id(Primary_key)
+
+		-meal_name
+
+		-posted
+
+		-admin_id(Foreign_key)
+
+class Subscribe
+
+	Table
+
+		-subscribers
+
+	Attributes
+
+		-id(Primary_key)
+
+		-subscriber_name
+
+		-subscriber_email
