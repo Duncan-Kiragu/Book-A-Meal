@@ -1,45 +1,12 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
+{% import 'macros.html' as macro %}
 
 
 {% block styles%}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Cabin|Comic+Neue|Cormorant|Love+Ya+Like+A+Sister|Miriam+Libre|Poiret+One|Sacramento&display=swap" rel="stylesheet">
 {%endblock%}
 
 {% block content%}
-<div class="container">
-<h1 class="text-center"><span style="font-size: 140px;font-family: 'Sacramento', cursive;">Blue</span>bird</h1>
-<h3 class="text-center"> A lifestyle blog</h3>
-<div class="text-center">
-    <img src="https://images.unsplash.com/photo-1569851409587-7e3a27cbfe1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="responsive">
-    <div class="quote jumbotron">
-        <h1>Mantra</h1>
-        <hr>
-        <hr>
-        <h2>{{quotes.author}}</h2>
-        <h2>{{quotes.quote}}</h2>
-    </div>
-        <div class="subscribe">
-        </div>
-        {% if blogs%}
-        {% for blog in blogs%}
-        <div class="card">
-            <a href="{{url_for('main.blog' ,blog_id = blog.id)}}"><img src="https://images.unsplash.com/photo-1587313512268-a3b47aa30166?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="blog-img"></a> 
-                    <div class="card-body">
-                        <h5 class="card-title"><a href="{{url_for('main.blog' ,blog_id = blog.id)}}">{{blog.title}}</a></h5>
-                        <p>{{blog.posted.strftime('%Y - %m - %d')}}</p>
-                    </div>
-            </div>
-        </div>
-
-        {% endfor%}
-        {% endif%}
-    </div>
-</div>
-<div class="subscribe jumbotron">
-    {% include 'subscribe.html'%}
-
-</div>
+<h1> Hello world</h1>
 {% endblock %}

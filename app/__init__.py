@@ -25,8 +25,13 @@ def create_app(config_name):
     #Registers the blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
-    from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint, url_prefix = '/authenticate')
+
+    from .auth_user import auth_user as auth_user_blueprint
+    app.register_blueprint(auth_user_blueprint, url_prefix = '/authenticate')
+    
+    from .auth_admin import auth_admin as auth_admin_blueprint
+    app.register_blueprint(auth_user_blueprint, url_prefix = '/authenticate')
+
 
     #Initializing flask extensions
     db.init_app(app)

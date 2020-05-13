@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+
+
+{% block content%}
+<div class="row">
+<div class="col-md-5"></div>
+<div class="col-md-6">
+    {% if current_user.is_authenticated %}
+
+    <h4 class="text-center">
+    <a href="{{url_for('main.new_order')}}"></a>
+    </h4>
+
+    {% endif %}
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+    {{macro.displayOrders(orders)}}
+
+</div>
+</div>
+{% endblock %}

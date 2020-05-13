@@ -1,4 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base.html'%}
 {% block content %}
-        <h1> WHOOOOOOPS! Can't find that page </h1>
-{%endblock%}
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <div></div>
+            <h1>404 </h1>
+        </div>
+        <h2>Page not found </h2>
+        <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+        <a href="{{ url_for('main.index')}}">Homepage</a>
+    </div>
+</div>
+{% endblock %}
