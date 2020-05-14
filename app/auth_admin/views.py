@@ -12,18 +12,14 @@ def register():
     title = "Sign Up"
     form = RegistrationForm()
     if form.validate_on_submit():
-        username = form.username.data
-        email = form.email.data
-        pass_code = form.password.data
-
-        new_user = User(username = username, email = email, password = pass_code)
-        new_user.save_user()
-        mail_message("Welcome", "email/welcome_user", new_user.email, username = username)
-
+        user = User(email = form.email.data, username = form.username.data,password = form.password.data)
+        mail_message("Welcome", "email/welcome_admin", new_user.email, username = username)
+        db.session.add(user)
+        db.session.commit()
         return redirect(url_for('auth.login'))
 
+    return render_template('auth_admin/register.html', title = title, registration_form = form)
 
-    return render_template('auth/register.html', title = title, registration_form = form)
 
 @auth.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -35,10 +31,11 @@ def login():
         
         if user is not None and user.verify_password(login_form.pasword.data):
             login_user(user, login_form.remember.data)
-            return redirect(url_for('main.index', user = user))
-            flash('Invalid username or password')
-    
-    return render_template('auth/login.html', title = title, login_form = login_form)
+            return redirect(request.args.get('next') or url_for('main.index'))
+
+        flash('Invalid username or Password')
+    title = "Book-a-Meal Login"
+    return render_template('auth_admin/login.html',login_form = login_form,title=title)
 
 
 @auth.route('/logout')

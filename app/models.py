@@ -88,28 +88,48 @@ class Order(db.Model):
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     admin_id = db.Column(db.Integer,db.ForeignKey('admins.id'))
-    meal_id = db.Column(db.Integer,db.ForeignKey('meals.id'))
+    menu_id = db.Column(db.Integer,db.ForeignKey('menu.id'))
+
+
+    @classmethod
+    def get_order(cls,id):
+        orders = Order.query.filter_by(order_id = id).all()
+        return orders
+
    
 
     
     
-class Meal(db.Model):
-    __tablename__ = 'meals'
+class Menu(db.Model):
+    __tablename__ = 'menu'
 
     id = db.Column(db.Integer, primary_key=True)
-    meal_name = db.Column(db.String)
+    menu_name = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     admin_id = db.Column(db.Integer,db.ForeignKey('admins.id'))
     order_id = db.Column(db.Integer,db.ForeignKey('orders.id'))
 
+    def save_menu(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_menu(cls,id):
+        menu = Menu.query.filter_by(menu_id = id).all()
+        return menu
+
 	
 
-class Subscribe(db.Model):
+class Subscriber(db.Model):
     __tablename__ = 'subscribers'
 
     id = db.Column(db.Integer,primary_key = True)
     subscriber_name = db.Column(db.String)
     subscriber_email = db.Column(db.String)
+
+    @classmethod
+    def get_subscribers(cls):
+        return Subscriber.query.all()
 
 
 

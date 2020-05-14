@@ -1,0 +1,137 @@
+from ..models import User,Admin,Role,Order,Meal,Subscriber
+from .forms import AddOrder, SubscriberForm,UpdateProfile ,AddMenu 
+from .. import db
+from . import main
+from flask import render_template, redirect, url_for,flash,request
+from flask_login import login_required, current_user
+from datetime import datetime
+from ..email import mail_message
+from sqlalchemy import desc
+
+@main.route('/')
+def index():
+    title = "book-A-Meal"
+    subscriber_form = SubscriberForm()
+    if subscriber_form.validate_on_submit():
+        subscriber_email = subscriber_form.email.data
+        new_subscriber = Subscriber(email = subscriber_email)
+        new_subscriber.save_subscriber()
+        mail_message("Welcome to book-A-Meal", "email/welcome_user", new_subscriber.email)
+        return redirect(url_for('main.index'))
+
+    return render_template('index.html',title = title,subscriber_form = subscriber_form)
+
+
+
+@main.route('/admin/<uname>')
+def admin_profile(uname):
+    admin = Admin.query.filter_by(username = uname).first()
+    if admin is None:
+        abort(404)
+    return render_template('profile/profile.html', admin = admin)
+
+
+
+@main.route('/admin/<uname>/update', methods=['GET','POST'])
+@login_required
+def update_profile(uname):
+    admin = Admin.query.filter_by(username = uname).first()
+    if admin is None:
+        abort(404)
+    form = UpdateProfile()
+    if form.validate_on_submit():
+        admin.bio = form.bio.data
+        db.session.add(admin)
+        db.session.commit()
+        return redirect(url_for('.profile'), uname = admin.username)
+
+    return render_template('profile/update.html', form = form)
+
+
+@main.route('/admin/<uname>/update/pic', methods=['GET','POST'])
+@login_required
+def update_pic(uname):
+    admin = Admin.query.filter_by(username = uname).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        admin.profile_pic = path
+        db.session.commit()
+    return redirect(url_for('main.profile',uname = admin.username))
+
+
+@main.route('/new-menu', methods = ['GET','POST'])
+@login_required
+def new_menu():
+    menu_form = AddMenu()
+    if menu_form.validate_on_submit():
+        menu = menu_form.menu.data
+        new_menu = Menu(menu_name = menu_name)
+        new_menu.save_menu()
+        return redirect(url_for('main.index'))
+    title = 'New Menu'
+    return render_template('menu_order/new_menu.html', title = title, menu_form = menu_form)
+
+
+@main.route('/menu/<int:id>', methods = ["GET","POST"])
+def menu(id):
+    menu = Menu.get_menu(id)
+    posted_date = menu.posted.strftime('%b %d, %Y')
+    return render_template('menu.html', menu = menu, date = posted_date)
+
+
+@main.route('/menu/<int:id>/update', methods = ['GET','POST'])
+@login_required
+def update_menu(id):
+    menu = Menu.get_menu(id)
+    form = AddMenu()
+    if form.validate_on_submit():
+        menu = form.menu.data
+        db.session.commit()
+        return redirect(url_for('main.menu', id = id))
+    elif request.method == 'GET':
+        form.menu.data = blog.menu
+    return render_template('menu_order/new_menu.html', form = form, id=id)
+
+
+
+@main.route('/menu/delete_menu/<int:id>', methods = ["GET","POST"])
+@login_required
+def delete_menu(id):
+    menu = Menu.query.filter_by(id = menu_id).first()
+    db.session.delete(menu)
+    db.session.commit()
+
+    flash('Menu has been deleted')
+
+    return redirect(url_for('main.menu',title = title, menu = menu))
+
+
+@main.route('/subscription',methods=['GET','POST'])
+def subscription():
+    subscription_form = SubscriberForm()
+    if subscription_form.validate_on_submit():
+        new_subscriber = Subscriber(subscriber_name=subscription_form.subscriber_name.data,subscriber_email=subscription_form.subscriber_email.data)
+        db.session.add(new_subscriber)
+        db.session.commit()
+        return redirect(url_for('main.index'))    
+    return render_template('subscription.html',subscription_form = subscription_form)
+
+
+@main.route('/order/<int:id>', methods = ["GET","POST"])
+def new_order(id):
+    order_name = Order.get_order(id)
+    posted_date = menu.posted.strftime('%b %d, %Y')
+    return render_template('order.html', order_name = order_name, date = posted_date)
+
+
+@main.route('/menu/delete_menu/<int:id>', methods = ["GET","POST"])
+@login_required
+def delete_order(id):
+    order = Order.query.filter_by(id = order_id).first()
+    db.session.delete(order)
+    db.session.commit()
+
+    flash('Order has been deleted')
+
+    return redirect(url_for('main.new_order',title = title, order = order))
