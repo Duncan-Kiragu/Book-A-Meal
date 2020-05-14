@@ -107,10 +107,14 @@ class Order(db.Model):
 
 
     @classmethod
-    def get_order(cls,id):
-        orders = Order.query.filter_by(order_id = id).all()
+    def get_orders(cls,id):
+        orders = Order.query.filter_by(id = id).all()
         return orders
 
+    @classmethod
+    def get_order_admin(cls, admin_id):
+        admin_orders = Order.query.filter_by(admin_id = admin_id).first()
+        return admin_orders
    
     
 class Menu(db.Model):

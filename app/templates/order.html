@@ -8,9 +8,7 @@
 <div class="col-md-5"></div>
 <div class="col-md-6">
     {% if current_user.is_authenticated %}
-
     <h4 class="text-center">
-    <a href="{{url_for('main.new_order')}}"></a>
     </h4>
 
     {% endif %}
@@ -21,6 +19,10 @@
 <div class="row">
     {{macro.displayOrders(orders)}}
 
+</div>
+<div>
+    <a href="{{url_for('main.another_order')}}" class="card-link btn btn-success float-right">Make another order</a>
+    <a href="{{url_for('main.review_order')}}"><button>Check out</button></a>
 </div>
 </div>
 {% endblock %}

@@ -6,7 +6,6 @@
           <p class="card-text">{{order.content| truncate(100)}}</p>
           <p>Ordered By: <strong>{{order.user.username}}</strong></p>
           <p>Date ordered {{order.posted.strftime('%Y-%m-%d')}}</p>
-          <a href="#" class="card-link btn btn-success float-right">Full Order</a>
         </div>
       </div>
     {% endfor %}
@@ -19,7 +18,10 @@
       <h4 class="card-title">{{menu.title}}</h4>
       <p class="card-text">{{menu.description}}</p>
       <p>Cost: <strong>{{menu.price}}</strong></p>
-      <p>Date ordered {{menu.posted.strftime('%Y-%m-%d')}}</p>
+      <p>Date created: {{menu.posted.strftime('%d-%m-%Y')}}</p>
+
+      <a href="{{url_for('main.get_order')}}" ><button>Add to cart</button></a>
+
     </div>
   </div>
 {% endfor %}

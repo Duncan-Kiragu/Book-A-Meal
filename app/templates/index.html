@@ -1,88 +1,74 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 {% import 'macros.html' as macro %}
-
-
 {% block styles%}
 {{super()}}
 {%endblock%}
-
 {% block content%}
+<img src="https://pixelz.cc/wp-content/uploads/2018/12/hamburgers-with-fire-uhd-4k-wallpaper.jpg" width="100%">
+
 <h1 class="text-center"> Welcome </h1>
 <h2 class="text-center" >  Book-A-Meal  </h2>
-
-
 {% if current_user.is_authenticated %}
 
-<div class="container-fluid">
+<div class="container-fluid" style="background-image: linear-gradient(#4d77eb,#0c57f8)">
+
     <div class="row">
         <p>{{macro.displayAdmin(admins)}}</p>
     </div>
 </div>
-
-
-<div class="container-fluid display">
+<div class="container-fluid display" style="background-image: linear-gradient#4d77eb,#0c57f8)">
     <div class="card-deck">
     <div class="card border-primary display">
         <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Jumia |</strong></h4></div>
         <div class="card-body text-primary">
           <h5 class="card-title">Best service providers</h5>
           <p class="card-text">
-              <img src="/static/photos/img.jpg" width="70%" height="auto">
-            </p>
+              <img src="{{url_for('static', filename='Hermes.png')}}"/></p>
         </div>
-        <div class="bg-transparent border-primary text-center"><a href="/menu" class="btn btn-outline-secondary waves-effect ">| View menu |</a></div>
+        <div class= "bg-transparent border-primary text-center"><a href="{{url_for('main.latest_menu')}}" class="btn btn-outline-secondary waves-effect ">| View caterer |</a></div>
     </div>
-    
     <div class="card border-primary display">
         <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Urban Burger |</strong></h4></div>
         <div class="card-body text-primary">
-          <h5 class="card-title">Get the Latest Travel Articles</h5>
-          <p class="card-text">
-            <img src="/static/photos/img.jpg" width="70%" height="auto">
-          </p>
+          <h5 class="card-title">For the best burger South of Sahara</h5>
+          <p class="card-text">Mouth watering cheese burgers and legendary vegerarian burgers.</p>
         </div>
-        <div class="bg-transparent border-primary text-center"><a href="/blogs/travel" class="btn btn-outline-secondary waves-effect ">| View Blogs |</a></div>
+        <div class="bg-transparent border-primary text-center"><a href="{{url_for('main.latest_menu')}}" class="btn btn-outline-secondary waves-effect ">| View Caterer |</a></div>
     </div>
-    
     <div class="card border-primary display">
         <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Java House |</strong></h4></div>
         <div class="card-body text-primary">
-          <h5 class="card-title">Get the Best Fitness Articles</h5>
-          <p class="card-text"> 
-            <img src="/static/photos/img.jpg" width="70%" height="auto">
-          </p>
+          <h5 class="card-title">Light meals, coffee and pastries.</h5>
+          <p class="card-text"> Our state of the art coffee machines and world class baristers will jumpstart your day with the perfect cup of coffee.</p>
         </div>
-        <div class="bg-transparent border-primary text-center"><a href="/blogs/fitness" class="btn btn-outline-secondary waves-effect ">| View Blogs |</a></div>
+        <div class="bg-transparent border-primary text-center"><a href="/blogs/fitness" class="btn btn-outline-secondary waves-effect ">| View Caterer |</a></div>
     </div>
     </div>
     <div class="card-deck">
     <div class="card border-primary display">
-        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Liquor store |</strong></h4></div>
+        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| BIG Square |</strong></h4></div>
         <div class="card-body text-primary">
-          <h5 class="card-title">Exciting Fashion Articles</h5>
-          <p class="card-text"> 
-            <img src="/static/photos/img.jpg" width="70%" height="auto">
-          </p>
+          <h5 class="card-title">Bigger, better, sweeter.</h5>
+          <p class="card-text"> Want to go big? Big Square is the option. Everything BIG. Order today.</p>
         </div>
-        <div class="bg-transparent border-primary text-center"><a href="/blogs/fashion" class="btn btn-outline-secondary waves-effect ">| View Blogs |</a></div>
+        <div class="bg-transparent border-primary text-center"><a href="/blogs/fashion" class="btn btn-outline-secondary waves-effect ">| View caterer |</a></div>
     </div>
-    
     <div class="card border-primary display">
         <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Amizas |</strong></h4></div>
         <div class="card-body text-primary">
-          <h5 class="card-title">Delicious Food Recipe Kenyan Articles</h5>
-          <p class="card-text">  Food Blog that shares recipes and cooking videos from all over the world with focus on using ingredients readily available.</p>
+          <h5 class="card-title">Delicious Food Recipe from Kenya</h5>
+          <p class="card-text">  Made from ingredients found in the country, we bring you the most authentic Kenyan meals for that exquisite occassion.</p>
         </div>
-        <div class="bg-transparent border-primary text-center"><a href="/blogs/food" class="btn btn-outline-secondary waves-effect ">| View Blogs |</a></div>
+        <div class="bg-transparent border-primary text-center"><a href="/blogs/food" class="btn btn-outline-secondary waves-effect ">| View caterer |</a></div>
     </div>
     <div class="card border-primary display">
         <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| KFC |</strong></h4></div>
         <div class="card-body text-primary">
           <h5 class="card-title"> Finger looking good </h5>
-          <p class="card-text">  Check out this articles for the best political blogs on the web </p>
+          <p class="card-text">  Our name speaks for itself... Think junk, think KFC. </p>
         </div>
-        <div class="bg-transparent border-primary text-center"><a href="/blogs/politics" class="btn btn-outline-secondary waves-effect">| View Blogs |</a></div>
+        <div class="bg-transparent border-primary text-center"><a href="/blogs/politics" class="btn btn-outline-secondary waves-effect">| View caterer |</a></div>
     </div>
     </div>
     </div>
@@ -107,3 +93,19 @@
     </div>
 </footer>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

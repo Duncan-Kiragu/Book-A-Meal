@@ -128,6 +128,31 @@ def delete_menu(id):
 
     return redirect(url_for('main.menu',title = title, menu = menu))
 
+@main.route('/menu/order')
+@login_required
+def get_order():
+    orders = Order.query.all()
+    return render_template('order.html', orders = orders )
+
+
+@main.route('/menu/another_order')
+@login_required
+def another_order():
+    return redirect(url_for('main.latest_menu'))
+
+
+@main.route('/menu/order/checkout')
+@login_required
+def review_order():
+    menus = Menu.query.all()
+    user = User.query.first()
+    return render_template('checkout.html',menus = menus, user = user)
+
+@main.route('/menu/order/checkout/proceed')
+@login_required
+def proceed_payment():
+    return render_template('final_order.html')
+
 
 @main.route('/subscription',methods=['GET','POST'])
 def subscription():
