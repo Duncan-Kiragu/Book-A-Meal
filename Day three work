@@ -1,0 +1,10 @@
+Kindly update the models.py file to accommodate all user stories 
+
+also make sure all the blueprints are registered on the app/__init__.py
+
+If you make changes to the db post it on the slack channel so that we can all update
+
+work from the remote branches
+
+We will start working on the presentation at noon
+
