@@ -30,7 +30,7 @@ def create_app(config_name):
     app.register_blueprint(auth_user_blueprint, url_prefix = '/authenticate')
     
     from .auth_admin import auth_admin as auth_admin_blueprint
-    app.register_blueprint(auth_user_blueprint, url_prefix = '/authenticate')
+    app.register_blueprint(auth_admin_blueprint, url_prefix = '/authenticate')
 
 
     #Initializing flask extensions
@@ -38,6 +38,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
+    configure_uploads(app,photos)
 
 
     return app

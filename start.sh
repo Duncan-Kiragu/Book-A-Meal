@@ -1,2 +1,4 @@
+export SECRET_KEY='book-A-meal'
 
-python manage.py server 
+
+python3 manage.py server 

@@ -16,6 +16,8 @@ class UpdateProfile(FlaskForm):
     submit = SubmitField('Submit')
 
 class AddMenu(FlaskForm):
-    menu = TextAreaField('Add a menu')
+    title = StringField('Title')
+    description =TextAreaField('Description')
+    price =StringField('Price')
     submit = SubmitField('Submit')
 

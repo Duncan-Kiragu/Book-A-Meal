@@ -8,5 +8,102 @@
 {%endblock%}
 
 {% block content%}
-<h1> Hello world</h1>
+<h1 class="text-center"> Welcome </h1>
+<h2 class="text-center" >  Book-A-Meal  </h2>
+
+
+{% if current_user.is_authenticated %}
+
+<div class="container-fluid">
+    <div class="row">
+        <p>{{macro.displayAdmin(admins)}}</p>
+    </div>
+</div>
+
+
+<div class="container-fluid display">
+    <div class="card-deck">
+    <div class="card border-primary display">
+        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Jumia |</strong></h4></div>
+        <div class="card-body text-primary">
+          <h5 class="card-title">Best service providers</h5>
+          <p class="card-text">
+              <img src="/static/photos/img.jpg" width="70%" height="auto">
+            </p>
+        </div>
+        <div class="bg-transparent border-primary text-center"><a href="/menu" class="btn btn-outline-secondary waves-effect ">| View menu |</a></div>
+    </div>
+    
+    <div class="card border-primary display">
+        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Urban Burger |</strong></h4></div>
+        <div class="card-body text-primary">
+          <h5 class="card-title">Get the Latest Travel Articles</h5>
+          <p class="card-text">
+            <img src="/static/photos/img.jpg" width="70%" height="auto">
+          </p>
+        </div>
+        <div class="bg-transparent border-primary text-center"><a href="/blogs/travel" class="btn btn-outline-secondary waves-effect ">| View Blogs |</a></div>
+    </div>
+    
+    <div class="card border-primary display">
+        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Java House |</strong></h4></div>
+        <div class="card-body text-primary">
+          <h5 class="card-title">Get the Best Fitness Articles</h5>
+          <p class="card-text"> 
+            <img src="/static/photos/img.jpg" width="70%" height="auto">
+          </p>
+        </div>
+        <div class="bg-transparent border-primary text-center"><a href="/blogs/fitness" class="btn btn-outline-secondary waves-effect ">| View Blogs |</a></div>
+    </div>
+    </div>
+    <div class="card-deck">
+    <div class="card border-primary display">
+        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Liquor store |</strong></h4></div>
+        <div class="card-body text-primary">
+          <h5 class="card-title">Exciting Fashion Articles</h5>
+          <p class="card-text"> 
+            <img src="/static/photos/img.jpg" width="70%" height="auto">
+          </p>
+        </div>
+        <div class="bg-transparent border-primary text-center"><a href="/blogs/fashion" class="btn btn-outline-secondary waves-effect ">| View Blogs |</a></div>
+    </div>
+    
+    <div class="card border-primary display">
+        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Amizas |</strong></h4></div>
+        <div class="card-body text-primary">
+          <h5 class="card-title">Delicious Food Recipe Kenyan Articles</h5>
+          <p class="card-text">  Food Blog that shares recipes and cooking videos from all over the world with focus on using ingredients readily available.</p>
+        </div>
+        <div class="bg-transparent border-primary text-center"><a href="/blogs/food" class="btn btn-outline-secondary waves-effect ">| View Blogs |</a></div>
+    </div>
+    <div class="card border-primary display">
+        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| KFC |</strong></h4></div>
+        <div class="card-body text-primary">
+          <h5 class="card-title"> Finger looking good </h5>
+          <p class="card-text">  Check out this articles for the best political blogs on the web </p>
+        </div>
+        <div class="bg-transparent border-primary text-center"><a href="/blogs/politics" class="btn btn-outline-secondary waves-effect">| View Blogs |</a></div>
+    </div>
+    </div>
+    </div>
+    {% endif %}
+<!--Menu Start-->
+<!--Menu end-->
+<br><br><hr>
+<footer class="page-footer font-small unique-color-info pt-4"
+    style="background-image: linear-gradient(#C79081 , #DFA579);">
+    <div class="container">
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <h5 class="mb-1"> Subscribe to our newsletter </h5>
+            </li>
+            <li class="list-inline-item">
+                <a href="/subscription" class="btn btn-outline-secondary waves-effect"> SUBSCRIBE </a>
+            </li>
+        </ul>
+    </div>
+    <div class="footer-copyright text-center py-3"> © 2020 Copyright:
+        <a href="#"> Book-A-Meal </a>
+    </div>
+</footer>
 {% endblock %}

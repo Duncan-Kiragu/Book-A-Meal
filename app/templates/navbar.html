@@ -1,4 +1,4 @@
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color navsize" style="height: 60px;">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark primary-color navsize" style="height: 60px;">
     <a class="navbar-brand" href="/">book-A-Meal</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
         aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,27 +15,43 @@
                 <a class="nav-link" href=""></a>
             </li>
             {% if current_user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{{url_for('main.new_')}}"></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{url_for('main.latest_menu')}}">Menu</a></li>
             {% endif %}
+            {% if current_user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{{url_for('main.new_menu')}}">| Create Menu |</a></li>
+           {% endif %}
         </ul>
+
+        
         <ul class="navbar-nav ml-auto nav-flex-icons">
             {% if current_user.is_authenticated %}
-            <li><a href="{{url_for('main.profile',uname=current_user.username)}}"></a></li>
+            <li><a href="{{url_for('main.admin_profile',uname=current_user.username)}}">My Account</a></li>
             <li style="font-weight: bold;font-style: italic;padding-left:10px;padding-right:10px;">|
                 {{current_user.username}} |</li>
-            <li><a href="{{url_for('auth.logout')}}">| Log out |</a></li>
+            <li><a href="{{url_for('auth_user.logout')}}">| Log out |</a></li>
             {% else %}
             <li class="nav-item">
-                <a class="nav-link waves-effect waves-light" href="{{url_for('auth.register')}}">
-                    <i class="fas fa-user"> | Register |</i>
+                <a class="nav-link waves-effect waves-light" href="{{url_for('auth_user.register')}}">
+                    <i class="fas fa-user"> | Register User |</i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-effect waves-light" href="{{url_for('auth.login')}}">
-                    <i class="fas fa-sign-out-alt"> | Log in |</i>
+                <a class="nav-link waves-effect waves-light" href="{{url_for('auth_admin.register1')}}">
+                    <i class="fas fa-user"> | Register Admin |</i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="{{url_for('auth_user.login')}}">
+                    <i class="fas fa-sign-out-alt"> | Log in User |</i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="{{url_for('auth_admin.login1')}}">
+                    <i class="fas fa-sign-out-alt"> | Log in Admin|</i>
                 </a>
             </li>
             {% endif %}
         </ul>
+
     </div>
 </nav>

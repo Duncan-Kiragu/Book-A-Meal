@@ -4,17 +4,22 @@ from flask_login import UserMixin
 from . import login_manager
 from datetime import datetime
 
+
+
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String)
     email = db.Column(db.String, unique = True, index = True)
-    password = db.Column(db.String)
+    pass_code = db.Column(db.String)
 
     role_id = db.relationship('Role', backref='user', lazy ='dynamic')
     order_id = db.relationship('Order', backref='user', lazy='dynamic')
 
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
 
 
     @property 
@@ -23,16 +28,17 @@ class User(UserMixin,db.Model):
 
     @password.setter
     def password(self,password):
-        self.password = generate_password_hash(password)
+        self.pass_code = generate_password_hash(password)
 
     def verify_password(self,password):
-        return check_password_hash(self.password,password)
+        return check_password_hash(self.pass_code,password)
 
+   
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-
+    
     def __repr__(self):
         return f'User {self.username}'
 
@@ -43,11 +49,19 @@ class Admin(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String)
     email = db.Column(db.String, unique = True, index = True)
-    password = db.Column(db.String)
+    pass_code = db.Column(db.String)
     bio = db.Column(db.String)
     profile_pic = db.Column(db.String)
     role_id = db.relationship('Role', backref='admin', lazy ='dynamic')
     order_id = db.relationship('Order',backref='admin', lazy='dynamic')
+
+    def save_admin(self):
+        db.session.add(self)
+        db.session.commit()
+
+    
+   
+
 
     @property 
     def password(self):
@@ -55,10 +69,10 @@ class Admin(UserMixin,db.Model):
 
     @password.setter
     def password(self,password):
-        self.password = generate_password_hash(password)
+        self.pass_code= generate_password_hash(password)
 
     def verify_password(self,password):
-        return check_password_hash(self.password,password)
+        return check_password_hash(self.pass_code,password)
 
     @login_manager.user_loader
     def load_user(admin_id):
@@ -86,6 +100,7 @@ class Order(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     order_name = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
+    delivery = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     admin_id = db.Column(db.Integer,db.ForeignKey('admins.id'))
     menu_id = db.Column(db.Integer,db.ForeignKey('menu.id'))
@@ -97,14 +112,14 @@ class Order(db.Model):
         return orders
 
    
-
-    
     
 class Menu(db.Model):
     __tablename__ = 'menu'
 
     id = db.Column(db.Integer, primary_key=True)
-    menu_name = db.Column(db.String)
+    title = db.Column(db.String)
+    description = db.Column(db.String)
+    price = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     admin_id = db.Column(db.Integer,db.ForeignKey('admins.id'))
     order_id = db.Column(db.Integer,db.ForeignKey('orders.id'))
@@ -112,11 +127,6 @@ class Menu(db.Model):
     def save_menu(self):
         db.session.add(self)
         db.session.commit()
-
-    @classmethod
-    def get_menu(cls,id):
-        menu = Menu.query.filter_by(menu_id = id).all()
-        return menu
 
 	
 

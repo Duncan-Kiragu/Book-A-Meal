@@ -1,5 +1,38 @@
 {% macro displayOrders(my_order_list) %}
-    {% for orders in  my_order_list %}
+    {% for order in  my_order_list %}
+    <div class="card border-info mb-3 spacing" style="min-width: 20rem;max-width: 20rem;">
+        <div class="card-body">
+          <h4 class="card-title">{{order.title}}</h4>
+          <p class="card-text">{{order.content| truncate(100)}}</p>
+          <p>Ordered By: <strong>{{order.user.username}}</strong></p>
+          <p>Date ordered {{order.posted.strftime('%Y-%m-%d')}}</p>
+          <a href="#" class="card-link btn btn-success float-right">Full Order</a>
+        </div>
+      </div>
     {% endfor %}
 {% endmacro %}
-    
+
+{% macro displayMenu(my_menu_list) %}
+{% for menu in  my_menu_list %}
+<div class="card border-info mb-3 spacing" style="min-width: 20rem;max-width: 20rem;">
+    <div class="card-body">
+      <h4 class="card-title">{{menu.title}}</h4>
+      <p class="card-text">{{menu.description}}</p>
+      <p>Cost: <strong>{{menu.price}}</strong></p>
+      <p>Date ordered {{menu.posted.strftime('%Y-%m-%d')}}</p>
+    </div>
+  </div>
+{% endfor %}
+{% endmacro %}
+
+{% macro displayAdmin(admin_list) %}
+{% for admin in  admin_list %}
+<div class="card border-info mb-3 spacing" style="min-width: 20rem;max-width: 20rem;">
+    <div class="card-body">
+      <h4 class="card-title">{{admin.username}}</h4>
+      <p class="card-text">{{admin.bio}}</p>
+      <a href="url_for('admin_menu', admin_id = admin_id)"> View More</a>
+    </div>
+  </div>
+{% endfor %}
+{% endmacro %}
