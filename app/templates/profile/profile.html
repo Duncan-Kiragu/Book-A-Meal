@@ -1,0 +1,34 @@
+% extends 'base.html'%}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 profile_pic">
+        <!-- Profile Pic -->
+        {% if user.profile_pic_path %}
+        <p class="user-tag"> <strong>Username: </strong>{{user.username|capitalize}} </p>
+        <img src="{{url_for('static',filename = user.profile_pic_path)}}" alt="" class="img-thumbnail">
+        {% else %}
+        <img src="{{url_for('static',filename = 'photos/Avatar.png')}}" alt="" class="img-thumbnail">
+        {% endif %}
+        {% if user == current_user %}
+        <form action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype="multipart/form-data">
+            <input type="file" name="photo" class="form-control" required>
+            <input type="submit">
+        </form>
+        {% endif %}
+    </div>
+    <!--Bio-->
+    <div class="col-md-7">
+        <h4>Bio Information</h4>
+        {% if user.bio %}
+            <p> {{user.bio}} </p>
+        {% else %}
+        <p>{{user.username}} has no bio</p>
+        {% endif %}
+        {% if user == current_user %}
+        <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit Bio</a><br>
+        {% endif %}
+    </div>
+    </div>
+</div>
+{% endblock %}
