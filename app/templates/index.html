@@ -1,74 +1,70 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 {% import 'macros.html' as macro %}
-{% block styles%}
-{{super()}}
-{%endblock%}
 {% block content%}
+<h1 class="text-center" >  book-<span style="font-size: 100px;">A</span>-meal  </h1>
 <img src="https://pixelz.cc/wp-content/uploads/2018/12/hamburgers-with-fire-uhd-4k-wallpaper.jpg" width="100%">
-
-<h1 class="text-center"> Welcome </h1>
-<h2 class="text-center" >  Book-A-Meal  </h2>
 {% if current_user.is_authenticated %}
 
-<div class="container-fluid" style="background-image: linear-gradient(#4d77eb,#0c57f8)">
+<div class="container-fluid">
 
-    <div class="row">
-        <p>{{macro.displayAdmin(admins)}}</p>
-    </div>
+  
 </div>
-<div class="container-fluid display" style="background-image: linear-gradient#4d77eb,#0c57f8)">
+<br><br>
+<div class="container-fluid display text-center" style="background: transparent;">
     <div class="card-deck">
-    <div class="card border-primary display">
-        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Jumia |</strong></h4></div>
+    <div class="card display">
+        <div class="card-header bg-transparent text-center"><h4> <strong>| Jumia |</strong></h4></div>
         <div class="card-body text-primary">
           <h5 class="card-title">Best service providers</h5>
           <p class="card-text">
-              <img src="{{url_for('static', filename='Hermes.png')}}"/></p>
+          
         </div>
         <div class= "bg-transparent border-primary text-center"><a href="{{url_for('main.latest_menu')}}" class="btn btn-outline-secondary waves-effect ">| View caterer |</a></div>
     </div>
-    <div class="card border-primary display">
-        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Urban Burger |</strong></h4></div>
+    <div class="card display">
+        <div class="card-header bg-transparent  text-center"><h4> <strong>| Urban Burger |</strong></h4></div>
         <div class="card-body text-primary">
           <h5 class="card-title">For the best burger South of Sahara</h5>
           <p class="card-text">Mouth watering cheese burgers and legendary vegerarian burgers.</p>
         </div>
         <div class="bg-transparent border-primary text-center"><a href="{{url_for('main.latest_menu')}}" class="btn btn-outline-secondary waves-effect ">| View Caterer |</a></div>
     </div>
-    <div class="card border-primary display">
-        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Java House |</strong></h4></div>
+    <div class="card display">
+        <div class="card-header bg-transparent  text-center"><h4> <strong>| Java House |</strong></h4></div>
         <div class="card-body text-primary">
           <h5 class="card-title">Light meals, coffee and pastries.</h5>
           <p class="card-text"> Our state of the art coffee machines and world class baristers will jumpstart your day with the perfect cup of coffee.</p>
         </div>
-        <div class="bg-transparent border-primary text-center"><a href="/blogs/fitness" class="btn btn-outline-secondary waves-effect ">| View Caterer |</a></div>
+        <div class="bg-transparent border-secondary text-center"><a href="/blogs/fitness" class="btn btn-outline-primary waves-effect ">| View Caterer |</a></div>
     </div>
+    
     </div>
+    <br><br>
     <div class="card-deck">
-    <div class="card border-primary display">
-        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| BIG Square |</strong></h4></div>
+    <div class="card display">
+        <div class="card-header bg-transparent text-center"><h4> <strong>| BIG Square |</strong></h4></div>
         <div class="card-body text-primary">
           <h5 class="card-title">Bigger, better, sweeter.</h5>
           <p class="card-text"> Want to go big? Big Square is the option. Everything BIG. Order today.</p>
         </div>
         <div class="bg-transparent border-primary text-center"><a href="/blogs/fashion" class="btn btn-outline-secondary waves-effect ">| View caterer |</a></div>
     </div>
-    <div class="card border-primary display">
-        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| Amizas |</strong></h4></div>
+    <div class="card display">
+        <div class="card-header bg-transparent text-center"><h4> <strong>| Amizas |</strong></h4></div>
         <div class="card-body text-primary">
           <h5 class="card-title">Delicious Food Recipe from Kenya</h5>
           <p class="card-text">  Made from ingredients found in the country, we bring you the most authentic Kenyan meals for that exquisite occassion.</p>
         </div>
-        <div class="bg-transparent border-primary text-center"><a href="/blogs/food" class="btn btn-outline-secondary waves-effect ">| View caterer |</a></div>
+        <div class="bg-transparent text-center"><a href="/blogs/food" class="btn btn-outline-secondary waves-effect ">| View caterer |</a></div>
     </div>
-    <div class="card border-primary display">
-        <div class="card-header bg-transparent border-primary text-center"><h4> <strong>| KFC |</strong></h4></div>
+    <div class="card display">
+        <div class="card-header bg-transparent text-center"><h4> <strong>| KFC |</strong></h4></div>
         <div class="card-body text-primary">
           <h5 class="card-title"> Finger looking good </h5>
           <p class="card-text">  Our name speaks for itself... Think junk, think KFC. </p>
         </div>
-        <div class="bg-transparent border-primary text-center"><a href="/blogs/politics" class="btn btn-outline-secondary waves-effect">| View caterer |</a></div>
+        <div class="bg-transparent text-center"><a href="/blogs/politics" class="btn btn-outline-secondary waves-effect">| View caterer |</a></div>
     </div>
     </div>
     </div>

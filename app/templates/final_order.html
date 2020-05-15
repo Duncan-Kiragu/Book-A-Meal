@@ -1,97 +1,83 @@
 {% extends 'base.html' %}
 
 {% block content%}
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-
-    <title> Online Food Delivery Form </title>
-
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" type="text/css">
-    <link href="custom.css" rel="stylesheet" type="text/css">
-
-    <script>
-        function finalCost(){
-            var foodItem = document.getElementById("food_item").value;
-            var specialItemm = document.getElementById("special_item").value;
-            var foodQuatity = document.getElementById("food_quantity").value;
-            var deliveryType = document.getElementById("delivery_type").value;
-            var deliveryArea = document.getElementById("delivery_area").value;
-
-            var all_food = (parseInt(foodItem)*7) + (parseInt(specialItemm)*3) + ((foodQuatity)*2) + (parseInt(deliveryType)*4) + (parseInt(deliveryArea)*3)
-            document.getElementById("result").innerHTML = all_food;
-        }
-        function ok_result(){
-            document.getElementById("okResult").style.display="block";
-            document.getElementById("okResult").style.backgroundColor="#DCE775";
-            document.getElementById("input_box").style.display="none";
-        }
-    </script>
-
-</head>
-<body>
-      <div class="online_food_delivery_box animated bounceInDown" id="input_box">
-          <h3> Online Food Delivery Form </h3><br>
-          <form>
-              <div class="form-group">
-                  <select class="form-control" id="food_item" onchange="finalCost()">
-                      <option value="0"> Select Food Item ... </option>
-                      <option value="1"> Spring Roll </option>
-                      <option value="2"> Fried Prawn </option>
-                      <option value="3"> Thai Fried Chicken Wings  </option>
-                      <option value="4"> Cutlet Chicken </option>
-                      <option value="5"> Cutlet Beef  </option>
-                      <option value="6"> Thai Mixed Noodles  </option>
-                      <option value="7"> Thai Beef With Ginger </option>
-                  </select>
+<div class="container-fluid">
+    <!-- Heading -->
+    <h2 class="my-5 h2 text-center">Place Order Form</h2>
+    <body class="grey lighten-3">
+        
+        <!--Main layout-->
+        <main class="mt-5 pt-4">
+          <div class="container wow fadeIn">
+            <ul class="list-group mb-3 z-depth-1">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                  <div>
+                    <h6 class="my-0">Meal name</h6>
+                    <small class="text-muted">Brief description</small>
+                  </div>
+                  <span class="text-muted">Ksh 800</span>
+                </li>
+                
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                  <div class="text-success">
+                    <h6 class="my-0">Promo code</h6>
+                    <small>EXAMPLECODE</small>
+                  </div>
+                  <span class="text-success">-$5</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Total (KSH)</span>
+                  <strong>Ksh 3000</strong>
+                </li>
+              </ul>
+           
+      
+            <!--Grid row-->
+            <div class="row">
+      
+              <!--Grid column-->
+              <div class="col-md-8 mb-4">
+      
+                <!--Card-->
+                <div class="card">
+      
+                  <!--Card content-->
+                  <form class="card-body">
+      
+                    <!--Grid row-->
+                    <div class="row">
+      
+                      <!--Grid column-->
+                      <div class="col-md-6 mb-2">
+                 <!--Username-->
+                 <div class="md-form input-group pl-0 mb-5">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Name</span>
+                    </div>
+                    <input type="text" class="form-control py-0" placeholder="Input name" aria-describedby="basic-addon1">
+                  </div>
+                        <!--firstName-->
+                    
+      
+                      </div>
+                
+      
+                      </div>
+                
+      
+                    </div>
+                    <!--Grid row-->
+      
+                   
+                  </form>
+      
+                </div>
+      
               </div>
-              <div class="form-group">
-                  <select class="form-control" id="special_item" onchange="finalCost()">
-                      <option value="0"> Want Special Item ?</option>
-                      <option value="2"> Yes </option>
-                      <option value="0"> No </option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <input type="number" class="form-control" id="food_quantity" placeholder="Quantity" onkeyup="finalCost()" >
-              </div>
-              <div class="form-group">
-                  <select class="form-control" id="delivery_type" onchange="finalCost()">
-                      <option value="0"> Delivery Type - </option>
-                      <option value="0"> Normal </option>
-                      <option value="2"> Emergency </option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <select class="form-control" id="delivery_area" onchange="finalCost()">
-                      <option value="0"> Select Delivery Area ... </option>
-                      <option value="1"> Dhanmondi </option>
-                      <option value="2"> Gulshan </option>
-                      <option value="3"> Mohammadpur  </option>
-                      <option value="4"> Uttara </option>
-                      <option value="5"> Mirpur  </option>
-                      <option value="6"> Banani  </option>
-                      <option value="7"> Magbazar </option>
-                  </select>
-              </div><br>
-              <div class="form-group">
-                  <label>Total Cost ($) : </label>
-                  <span id="result" style="background-color: #8c7269;color: #fff;padding: 6px 70px;font-weight: 600;font-size: 18px; margin-left: 10px;border-radius: 5px;">0</span>
-                  <input type="button" value="SUBMIT" class="btn btn-primary" style="float: right" id="ok" onclick="ok_result()">
-              </div>
-          </form>
-      </div>
-
-      <div class="result_box animated zoomIn" style="display: none;" id="okResult">
-          <h3 class="result_box_text" id="ok_text"> Your order is successfully submitted. Please keep patience, we will come to you soon.<br><br><span> --  Thank You  -- </span></h3><br>
-      </div>
-
-
-<!-- Button trigger modal-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCookie1">Cookies</button>
+              <hr class="mb-4">
+              <button class="btn btn-warning btn-sm btn-block" type="submit"><a href="{{url_for('main.place_order')}}">Place order</a></button>
+              <hr><hr>
+              <button class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#modalCookie1" type="button">Cancel order</button>
 
 <!--Modal: modalCookie-->
 <div class="modal fade top" id="modalCookie1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -103,9 +89,9 @@
       <div class="modal-body">
         <div class="row d-flex justify-content-center align-items-center">
 
-          <p class="pt-3 pr-2">We use cookies to improve your website experience</p>
+          <p class="pt-3 pr-2">You have successfully canceled your order</p>
 
-          <a type="button" class="btn btn-primary">Learn more <i class="fas fa-book ml-1"></i></a>
+          <a type="submit" href="{{url_for('main.another_order')}}" class="btn btn-primary">Create new order <i class="fas fa-book ml-1"></i></a>
           <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">Ok, thanks</a>
         </div>
       </div>
@@ -114,4 +100,17 @@
   </div>
 </div>
 <!--Modal: modalCookie-->
+    
+        </main>
+       
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+        <script type="text/javascript">
+
+          new WOW().init();
+        </script>
+      </body>
+
 {% endblock %}

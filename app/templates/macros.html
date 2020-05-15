@@ -2,10 +2,11 @@
     {% for order in  my_order_list %}
     <div class="card border-info mb-3 spacing" style="min-width: 20rem;max-width: 20rem;">
         <div class="card-body">
-          <h4 class="card-title">{{order.title}}</h4>
-          <p class="card-text">{{order.content| truncate(100)}}</p>
-          <p>Ordered By: <strong>{{order.user.username}}</strong></p>
+          <h4 class="card-header">{{order.title}}</h4>
+          <p class="card-body">{{order.content| truncate(100)}}</p>
+          <p class="card-body">Ordered By: <strong>{{order.user.username}}</strong></p>
           <p>Date ordered {{order.posted.strftime('%Y-%m-%d')}}</p>
+          <a href="#" class="card-link btn btn-success float-right">Full Order</a>
         </div>
       </div>
     {% endfor %}
@@ -13,28 +14,23 @@
 
 {% macro displayMenu(my_menu_list) %}
 {% for menu in  my_menu_list %}
-<div class="card border-info mb-3 spacing" style="min-width: 20rem;max-width: 20rem;">
-    <div class="card-body">
-      <h4 class="card-title">{{menu.title}}</h4>
-      <p class="card-text">{{menu.description}}</p>
-      <p>Cost: <strong>{{menu.price}}</strong></p>
-      <p>Date created: {{menu.posted.strftime('%d-%m-%Y')}}</p>
+<div class="view view-cascade overlay">
+    <img class="card-img-top" style="padding-left: 30px;" src="data:image/png;base64,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" alt="Card image cap" height="auto" width="40px">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
 
-      <a href="{{url_for('main.get_order')}}" ><button>Add to cart</button></a>
-
+<div class="card-body card-body-cascade text-center border-primary mb-3 spacing" style="min-width: 20rem;max-width: 20rem;">
+    <div class="card-body" style="outline: dotted;padding-left: 20px;color: black;background-color: rgba(90, 74, 49, 0.233);">
+      <h4 class="card-header" style="background-color: burlywood;color: black;">{{menu.title}}</h4>
+      <p class="card-body">{{menu.description}}</p>
+      <p class="card-body">Cost: <strong>{{menu.price}}</strong></p>
+      <p class="card-title">Date ordered {{menu.posted.strftime('%Y-%m-%d')}}</p>
+      <a href="{{url_for('main.review_order')}}" class="card-link btn btn-success float-right">Make order</a>
     </div>
   </div>
+</div>
+
 {% endfor %}
 {% endmacro %}
 
-{% macro displayAdmin(admin_list) %}
-{% for admin in  admin_list %}
-<div class="card border-info mb-3 spacing" style="min-width: 20rem;max-width: 20rem;">
-    <div class="card-body">
-      <h4 class="card-title">{{admin.username}}</h4>
-      <p class="card-text">{{admin.bio}}</p>
-      <a href="url_for('admin_menu', admin_id = admin_id)"> View More</a>
-    </div>
-  </div>
-{% endfor %}
-{% endmacro %}

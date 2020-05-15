@@ -24,7 +24,8 @@ def index():
 
 @main.route('/admin')
 def admin_index():
-    return render_template('admin_index.html')
+    admin = Admin.query.first()
+    return render_template('admin_index.html', admin = admin )
 
 
 @main.route('/admin/<uname>')
@@ -67,6 +68,7 @@ def update_pic(uname):
 @main.route('/new-menu', methods = ['GET','POST'])
 @login_required
 def new_menu():
+    menus = Menu.query.all()
     menu_form = AddMenu()
     if menu_form.validate_on_submit():
         title = menu_form.title.data
@@ -74,9 +76,9 @@ def new_menu():
         price = menu_form.price.data
         new_menu = Menu(title = title, description = description, price = price)
         new_menu.save_menu()
-        return redirect(url_for('main.index'))
+        return render_template('menu_order/new_menu.html',title = title, menu_form = menu_form, menus = menus)
     title = 'New Menu'
-    return render_template('menu_order/new_menu.html', title = title, menu_form = menu_form)
+    return render_template('menu_order/new_menu.html', title = title, menu_form = menu_form, menus = menus)
 
 
 
@@ -120,7 +122,7 @@ def update_menu(menu_name):
 @main.route('/menu/delete_menu/<int:id>', methods = ["GET","POST"])
 @login_required
 def delete_menu(id):
-    menu = Menu.query.filter_by(id = menu_id).first()
+    menu = Menu.query.filter_by(id = id).first()
     db.session.delete(menu)
     db.session.commit()
 
@@ -153,6 +155,15 @@ def review_order():
 def proceed_payment():
     return render_template('final_order.html')
 
+@main.route('/menu/order/checkout/proceed/post')
+@login_required
+def place_order():
+    return render_template('order_message.html')
+
+@main.route('/menu/order/checkout/proceed/cancel')
+@login_required
+def cancel_order():
+    return render_template('cancel.html')
 
 @main.route('/subscription',methods=['GET','POST'])
 def subscription():
@@ -161,6 +172,7 @@ def subscription():
         new_subscriber = Subscriber(subscriber_name=subscription_form.username.data,subscriber_email=subscription_form.email.data)
         db.session.add(new_subscriber)
         db.session.commit()
+        flash('You have successfully subscribed!')
         return redirect(url_for('main.index'))    
     return render_template('subscription.html',subscription_form = subscription_form)
 

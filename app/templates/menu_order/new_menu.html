@@ -1,8 +1,22 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
+{% import 'macros.html' as macro %}
 
 
 {% block content %}
+{% if menus%}
+{% for menu in menus%}
+<div class="row">
+    <div class="card-body" style="outline: dotted;padding-left: 20px;color: black;background-color: rgba(90, 74, 49, 0.233);">
+        <h4 class="card-header" style="background-color: burlywood;color: black;">{{menu.title}}</h4>
+        <p class="card-body">{{menu.description}}</p>
+        <p class="card-body">Cost: <strong>{{menu.price}}</strong></p>
+        <p class="card-title">Date ordered {{menu.posted.strftime('%Y-%m-%d')}}</p>
+        <a href="{{url_for('main.delete_menu', id = menu.id)}}"><button>Delete menu </menu></button></a>
+</div>
+{% endfor %}
+{% endif %}
+
 <div class="container-fluid">
 <div class="row" style="margin-top: 50px;">
     <div class="col-md-2"></div>
